@@ -7,6 +7,7 @@ import { Wipe } from "@/components/motion/wipe";
 import { DrawBorder } from "@/components/motion/draw-border";
 import { useMarksInView } from "@/hooks/use-marks-in-view";
 import { EuropeShieldIcon } from "@/components/icons/europe-shield";
+import { trustSectionIcon } from "@/components/landing/section-icons";
 
 function TrustCard({
   title,
@@ -38,6 +39,8 @@ function cardIcon(icon?: string) {
   if (icon === "europe") {
     return <EuropeShieldIcon className="h-[18px] w-[18px]" />;
   }
+  const sectionIcon = trustSectionIcon(icon);
+  if (sectionIcon) return sectionIcon;
   return undefined;
 }
 

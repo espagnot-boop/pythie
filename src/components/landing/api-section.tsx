@@ -1,6 +1,7 @@
 "use client";
 
 import { apiSection } from "@/content/en";
+import { SectionIconApi } from "@/components/landing/section-icons";
 import { MaskLines } from "@/components/motion/mask-lines";
 import { Wipe } from "@/components/motion/wipe";
 
@@ -24,7 +25,12 @@ export function ApiSection() {
     <section id="api" className="section-pad border-b border-border">
       <div className="grid-cols-12 gap-y-10">
         <div className="col-span-12 lg:col-span-5">
-          <MaskLines text={apiSection.title} className="text-h2" as="h2" />
+          <div className="flex items-start gap-4">
+            <span className="mt-1 flex h-10 w-10 shrink-0 items-center justify-center border border-border bg-background">
+              <SectionIconApi />
+            </span>
+            <MaskLines text={apiSection.title} className="text-h2" as="h2" />
+          </div>
           <p className="mt-6 text-body">{apiSection.intro}</p>
           <ul className="mt-8 space-y-4">
             {apiSection.endpoints.map((ep) => (

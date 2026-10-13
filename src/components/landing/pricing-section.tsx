@@ -9,6 +9,7 @@ import { Wipe } from "@/components/motion/wipe";
 import { DrawBorder } from "@/components/motion/draw-border";
 import { Odometer } from "@/components/motion/odometer";
 import { useMarksInView } from "@/hooks/use-marks-in-view";
+import { SectionIconCheck } from "@/components/landing/section-icons";
 
 export function PricingSection() {
   const [yearly, setYearly] = useState(false);
@@ -84,8 +85,8 @@ function PlanCard({
         <p className="mt-4 text-body-sm">{plan.desc}</p>
         <ul className="mt-6 flex-1 space-y-3 text-body-sm">
           {plan.features.map((f) => (
-            <li key={f} className="flex gap-2">
-              <span className="mt-2 inline-block h-[6px] w-[6px] shrink-0 bg-foreground dark:bg-accent" />
+            <li key={f} className="flex gap-2.5">
+              <SectionIconCheck className="mt-0.5 shrink-0 text-accent" />
               {f}
             </li>
           ))}

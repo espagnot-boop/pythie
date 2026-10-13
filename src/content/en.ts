@@ -217,10 +217,12 @@ export const trust = {
     {
       title: "Every figure has a source",
       body: "Click a number to open the page it came from, with capture date.",
+      icon: "source",
     },
     {
       title: "Gaps are stated",
       body: "If a page is unreadable or the sample is too small, Pythie says so instead of guessing.",
+      icon: "gap",
     },
     {
       title: "European sovereignty",

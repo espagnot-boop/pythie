@@ -5,6 +5,7 @@ import { how } from "@/content/en";
 import { MaskLines } from "@/components/motion/mask-lines";
 import { Switch } from "@/components/ui/switch";
 import { Bar, BarChart } from "recharts";
+import { howStepIcons } from "@/components/landing/section-icons";
 
 const STICKY_TOP = 72;
 
@@ -40,16 +41,26 @@ export function HowSection() {
         <div className="col-span-12 lg:col-span-5 lg:sticky lg:top-[72px] lg:self-start">
           <MaskLines text={how.title} className="text-h2" as="h2" />
           <div className="mt-10 space-y-8">
-            {how.steps.map((step, i) => (
+            {how.steps.map((step, i) => {
+              const StepIcon = howStepIcons[i];
+              return (
               <div
                 key={step.index}
                 className={`border-l-2 pl-4 transition-opacity duration-200 ${active === i ? "border-accent opacity-100" : "border-transparent opacity-35"}`}
               >
-                <p className="font-mono text-[13px] text-muted-foreground">{step.index}</p>
-                <h3 className="text-h3">{step.title}</h3>
+                <div className="flex items-center gap-3">
+                  {StepIcon && (
+                    <span className="flex h-9 w-9 shrink-0 items-center justify-center border border-border bg-background">
+                      <StepIcon className="text-foreground" />
+                    </span>
+                  )}
+                  <p className="font-mono text-[13px] text-muted-foreground">{step.index}</p>
+                </div>
+                <h3 className="mt-2 text-h3">{step.title}</h3>
                 <p className="mt-2 text-body-sm">{step.body}</p>
               </div>
-            ))}
+            );
+            })}
           </div>
         </div>
 
