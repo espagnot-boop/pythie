@@ -2,11 +2,11 @@ import { site } from "@/content/en";
 
 export const about = {
   title: "About",
-  name: "Matis Ghomras",
+  name: "Matis Ghom",
   role: "Founder",
   email: site.contactEmail,
   intro:
-    "I’m Matis Ghomras. I’m studying computer science at École Polytechnique in Paris and building Pythie from Europe.",
+    "I’m Matis Ghom. I’m studying computer science at École Polytechnique in Paris and building Pythie from Europe.",
   sections: [
     {
       heading: "What I’m doing",
