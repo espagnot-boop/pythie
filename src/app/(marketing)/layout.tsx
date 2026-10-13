@@ -1,5 +1,4 @@
 import { NavBar } from "@/components/landing/nav";
-import { IndexRail } from "@/components/landing/index-rail";
 
 export default function MarketingLayout({
   children,
@@ -9,7 +8,6 @@ export default function MarketingLayout({
   return (
     <>
       <NavBar />
-      <IndexRail />
       <main>{children}</main>
     </>
   );

@@ -6,30 +6,40 @@ import { MaskLines } from "@/components/motion/mask-lines";
 import { Switch } from "@/components/ui/switch";
 import { Bar, BarChart } from "recharts";
 
+const STICKY_TOP = 72;
+
 export function HowSection() {
   const [active, setActive] = useState(0);
-  const ref = useRef<HTMLElement>(null);
+  const triggersRef = useRef<(HTMLDivElement | null)[]>([]);
 
   useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    const onScroll = () => {
-      const rect = el.getBoundingClientRect();
-      const progress = Math.min(1, Math.max(0, -rect.top / (rect.height - window.innerHeight)));
-      if (progress < 0.33) setActive(0);
-      else if (progress < 0.66) setActive(1);
-      else setActive(2);
-    };
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
+    const elements = triggersRef.current.filter(Boolean) as HTMLDivElement[];
+    if (elements.length === 0) return;
+
+    const observers = elements.map((el, index) => {
+      const io = new IntersectionObserver(
+        ([entry]) => {
+          if (entry?.isIntersecting) setActive(index);
+        },
+        {
+          root: null,
+          rootMargin: `-${STICKY_TOP + 80}px 0px -45% 0px`,
+          threshold: 0,
+        },
+      );
+      io.observe(el);
+      return io;
+    });
+
+    return () => observers.forEach((io) => io.disconnect());
   }, []);
 
   return (
-    <section id="fonctionnement" ref={ref} className="section-pad border-b border-border lg:min-h-[300vh]">
-      <div className="grid-cols-12">
-        <div className="col-span-12 lg:col-span-5">
+    <section id="fonctionnement" className="section-pad border-b border-border">
+      <div className="grid-cols-12 lg:items-start">
+        <div className="col-span-12 lg:col-span-5 lg:sticky lg:top-[72px] lg:self-start">
           <MaskLines text={how.title} className="text-h2" as="h2" />
-          <div className="mt-16 hidden lg:sticky lg:top-[120px] lg:block space-y-8">
+          <div className="mt-10 space-y-8">
             {how.steps.map((step, i) => (
               <div
                 key={step.index}
@@ -42,16 +52,42 @@ export function HowSection() {
             ))}
           </div>
         </div>
+
         <div className="col-span-12 mt-12 lg:col-span-7 lg:mt-0">
-          <div className="hidden h-[400px] border border-border bg-card p-5 lg:block">
-            {active === 0 && <TypePanel />}
-            {active === 1 && <LogPanel />}
-            {active === 2 && <ChartPanel />}
+          <div className="hidden lg:block">
+            <div
+              className="sticky z-10 border border-border bg-card p-5"
+              style={{ top: STICKY_TOP }}
+            >
+              <div className="h-[360px]">
+                {active === 0 && <TypePanel />}
+                {active === 1 && <LogPanel />}
+                {active === 2 && <ChartPanel />}
+              </div>
+            </div>
+            {how.steps.map((step, i) => (
+              <div
+                key={step.index}
+                ref={(el) => {
+                  triggersRef.current[i] = el;
+                }}
+                className="h-[85vh]"
+                aria-hidden
+              />
+            ))}
           </div>
-          <div className="space-y-12 lg:hidden">
-            <TypePanel />
-            <LogPanel />
-            <ChartPanel />
+
+          <div className="space-y-8 lg:hidden">
+            {how.steps.map((step, i) => (
+              <div key={step.index}>
+                <p className="mb-3 font-mono text-[13px] text-muted-foreground">{step.index}</p>
+                <div className="min-h-[280px] border border-border bg-card p-5">
+                  {i === 0 && <TypePanel />}
+                  {i === 1 && <LogPanel />}
+                  {i === 2 && <ChartPanel />}
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </div>
@@ -64,7 +100,9 @@ function TypePanel() {
   useEffect(() => {
     let i = 0;
     let del = false;
+    let cancelled = false;
     const run = () => {
+      if (cancelled) return;
       if (!del) {
         if (i <= how.typeExample.length) {
           setText(how.typeExample.slice(0, i));
@@ -86,6 +124,9 @@ function TypePanel() {
       }
     };
     run();
+    return () => {
+      cancelled = true;
+    };
   }, []);
   return (
     <div className="relative h-full">
@@ -128,7 +169,7 @@ function LogPanel() {
 }
 
 function ChartPanel() {
-  const data = [40, 55, 48, 62, 70, 58, 66].map((v, i) => ({ i: String(i), v }));
+  const data = [40, 55, 48, 62, 70, 58, 66].map((v, idx) => ({ i: String(idx), v }));
   const [alertOn, setAlertOn] = useState(false);
   useEffect(() => {
     const t = setTimeout(() => setAlertOn(true), 1000);
@@ -141,7 +182,7 @@ function ChartPanel() {
       </BarChart>
       <div className="mt-4 flex items-center gap-3 font-mono text-[13px]">
         {how.alertLine}
-        <Switch checked={alertOn} disabled aria-label="alerte" />
+        <Switch checked={alertOn} disabled aria-label="Alert toggle" />
       </div>
     </div>
   );

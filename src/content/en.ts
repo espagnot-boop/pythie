@@ -15,6 +15,7 @@ export const nav = {
   login: "Sign in",
   try: "Try it",
   menu: "Menu",
+  waitlist: "Join the waitlist",
 };
 
 export const hero = {

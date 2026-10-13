@@ -8,7 +8,6 @@ import { Logo } from "@/components/landing/logo";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Menu } from "@/components/icons";
-import { ThemeToggle } from "@/components/landing/theme-toggle";
 import { MaskLines } from "@/components/motion/mask-lines";
 
 const links = [
@@ -36,7 +35,7 @@ export function NavBar() {
       >
         <div className="mx-auto flex h-full max-w-[1120px] items-center justify-between px-5 lg:px-8">
           <Logo size={logoSize} />
-          <nav className="hidden items-center gap-8 md:flex" aria-label="navigation principale">
+          <nav className="hidden items-center gap-8 md:flex" aria-label="Main navigation">
             {links.map((l) => (
               <Link key={l.href} href={l.href} className="link-hover font-mono text-[14px]">
                 {l.label}
@@ -44,12 +43,8 @@ export function NavBar() {
             ))}
           </nav>
           <div className="flex items-center gap-2">
-            <ThemeToggle />
-            <Button variant="outline" className="hidden sm:inline-flex" asChild>
-              <Link href="/app">{nav.login}</Link>
-            </Button>
             <Button className="hidden sm:inline-flex" asChild>
-              <Link href="/app">{nav.try}</Link>
+              <Link href="#attente">{nav.waitlist}</Link>
             </Button>
             <Sheet>
               <SheetTrigger asChild className="md:hidden">
@@ -64,6 +59,9 @@ export function NavBar() {
                       <MaskLines text={l.label} as="h2" immediate />
                     </Link>
                   ))}
+                  <Button className="mt-8 w-full" asChild>
+                    <Link href="#attente">{nav.waitlist}</Link>
+                  </Button>
                 </div>
               </SheetContent>
             </Sheet>
