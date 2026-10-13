@@ -356,7 +356,7 @@ export const footer = {
     { href: "#faq", label: "FAQ" },
   ],
   resourceLinks: [
-    { href: "#", label: "Documentation" },
+    { href: "/about", label: "About" },
     { href: "#api", label: "API" },
     { href: "#", label: "Status" },
     { href: "#", label: "Changelog" },

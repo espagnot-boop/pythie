@@ -51,7 +51,7 @@ Adds an email to the beta waitlist.
 **Request:**
 
 ```json
-{ "email": "you@example.com" }
+{ "email": "you@company.com" }
 ```
 
 **Success (`200`):**
@@ -120,7 +120,7 @@ npx drizzle-kit push
 |----------|----------|---------|
 | `DATABASE_URL` | No (yes in prod for waitlist) | Postgres connection string |
 | `CRON_SECRET` | No | Protects `/api/cron/alerts` |
-| `NEXT_PUBLIC_SITE_URL` | No | Canonical site URL (sitemap, metadata). Default: `https://pythie.example` |
+| `NEXT_PUBLIC_SITE_URL` | No | Canonical site URL (sitemap, metadata). Default: `https://pythie.eu` |
 | AI provider keys | Yes for chat | Depends on your AI SDK setup on Vercel (e.g. AI Gateway) |
 
 See `.env.example`.
