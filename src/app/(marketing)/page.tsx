@@ -5,6 +5,7 @@ import { HowSection } from "@/components/landing/how-section";
 import { BentoSection } from "@/components/landing/bento-section";
 import { NumbersSection } from "@/components/landing/numbers-section";
 import { TrustSection } from "@/components/landing/trust-section";
+import { ApiSection } from "@/components/landing/api-section";
 import { WaitlistSection } from "@/components/landing/waitlist-section";
 import { PricingSection } from "@/components/landing/pricing-section";
 import { FaqSection } from "@/components/landing/faq-section";
@@ -21,6 +22,7 @@ export default function HomePage() {
       <BentoSection />
       <NumbersSection />
       <TrustSection />
+      <ApiSection />
       <WaitlistSection />
       <PricingSection />
       <FaqSection />

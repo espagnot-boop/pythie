@@ -165,6 +165,49 @@ export const numbers = {
   ],
 };
 
+export const apiSection = {
+  title: "Request in.\nData out.",
+  intro:
+    "Every action is an HTTP call: ask a question, join the waitlist, or trigger monitoring. Chat streams tokens as Pythie works; everything else returns JSON.",
+  footnote: "Team plans add authenticated REST endpoints for questions, alerts, and exports. Same pipeline as the app.",
+  endpoints: [
+    {
+      method: "POST",
+      path: "/api/chat",
+      desc: "Natural-language question. Response is a streamed AI UI message (SSE), consumed by the /app chat.",
+    },
+    {
+      method: "POST",
+      path: "/api/waitlist",
+      desc: "Body: { \"email\" }. Adds an address to the beta queue. Returns { ok, count }.",
+    },
+    {
+      method: "GET",
+      path: "/api/waitlist",
+      desc: "Queue size only: { \"count\": number }.",
+    },
+    {
+      method: "GET",
+      path: "/api/cron/alerts",
+      desc: "Scheduled check for active alerts (Bearer CRON_SECRET). Used by Vercel Cron.",
+    },
+  ],
+  exampleLabel: "Example",
+  exampleChat: `POST /api/chat
+Content-Type: application/json
+
+{
+  "messages": [{
+    "role": "user",
+    "parts": [{ "type": "text", "text": "Avg 2-bed rent in Lyon?" }]
+  }]
+}`,
+  exampleWaitlist: `POST /api/waitlist
+{ "email": "you@company.com" }
+
+→ 200 { "ok": true, "count": 128 }`,
+};
+
 export const trust = {
   title: "What you can verify.",
   cards: [
@@ -309,7 +352,7 @@ export const footer = {
   ],
   resourceLinks: [
     { href: "#", label: "Documentation" },
-    { href: "#", label: "API" },
+    { href: "#api", label: "API" },
     { href: "#", label: "Status" },
     { href: "#", label: "Changelog" },
   ],
