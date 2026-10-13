@@ -249,14 +249,17 @@ function MarketBars() {
 }
 
 function AlertStack() {
-  const [cycle, setCycle] = useState(0);
+  const [shown, setShown] = useState(0);
 
   useEffect(() => {
-    const id = setInterval(() => setCycle((c) => c + 1), 8000);
+    let count = 0;
+    const tick = () => {
+      count = (count + 1) % (bento.alerts.length + 1);
+      setShown(count);
+    };
+    const id = setInterval(tick, 2200);
     return () => clearInterval(id);
   }, []);
-
-  const shown = cycle % (bento.alerts.length + 1);
 
   return (
     <div className="relative min-h-[148px]">
