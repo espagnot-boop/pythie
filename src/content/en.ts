@@ -391,4 +391,15 @@ export const app = {
   send: "Send",
   sidebarTitle: "Conversations",
   alertsTitle: "Active alerts",
+  betaGate: {
+    hint: "Live answers are invite-only during the private beta.",
+    badge: "Private beta",
+    title: "Join the waitlist to ask this for real.",
+    body:
+      "We are onboarding in order. Leave your email and we will notify you when your account can run questions, alerts, and exports.",
+    reply:
+      "Good question. The public beta is not open for live runs yet — join the waitlist below and we will email you when your slot is ready.",
+    navCta: "Join the waitlist",
+    backToLanding: "See the full waitlist on the homepage →",
+  },
 };
