@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import type { ReactNode } from "react";
 import { motion, useInView } from "motion/react";
 import { bento } from "@/content/en";
 import { MaskLines } from "@/components/motion/mask-lines";
@@ -8,6 +9,14 @@ import { Wipe } from "@/components/motion/wipe";
 import { Counter } from "@/components/motion/counter";
 import { useMarksInView } from "@/hooks/use-marks-in-view";
 import { dur, ease, inView as inViewConfig } from "@/lib/motion";
+import {
+  BentoAlert,
+  BentoCompetitor,
+  BentoExport,
+  BentoLivePrice,
+  BentoMarket,
+  BentoShrink,
+} from "@/components/landing/bento-icons";
 
 const cards = bento.cards;
 const c0 = cards[0]!;
@@ -22,23 +31,53 @@ export function BentoSection() {
     <section id="usages" className="section-pad border-b border-border">
       <div className="grid-cols-12">
         <MaskLines text={bento.title} className="col-span-12 text-h2 lg:col-span-8" as="h2" />
-        <div className="col-span-12 mt-10 grid gap-5 lg:grid-cols-12">
-          <BentoShell className="lg:col-span-7 lg:min-h-[300px]" title={c0.title} body={c0.body}>
+        <div className="col-span-12 mt-10 grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-12">
+          <BentoShell
+            className="md:col-span-2 lg:col-span-7 lg:min-h-[300px]"
+            title={c0.title}
+            body={c0.body}
+            icon={<BentoLivePrice className="text-foreground" />}
+          >
             <LivePriceChart />
           </BentoShell>
-          <BentoShell className="lg:col-span-5 lg:min-h-[300px]" title={c1.title} body={c1.body}>
+          <BentoShell
+            className="md:col-span-2 lg:col-span-5 lg:min-h-[300px]"
+            title={c1.title}
+            body={c1.body}
+            icon={<BentoShrink className="text-foreground" />}
+          >
             <ShrinkflationVisual />
           </BentoShell>
-          <BentoShell className="lg:col-span-4 lg:min-h-[300px]" title={c2.title} body={c2.body}>
+          <BentoShell
+            className="lg:col-span-4 lg:min-h-[300px]"
+            title={c2.title}
+            body={c2.body}
+            icon={<BentoCompetitor className="text-foreground" />}
+          >
             <CompetitorTable />
           </BentoShell>
-          <BentoShell className="lg:col-span-4 lg:min-h-[300px]" title={c3.title} body={c3.body}>
+          <BentoShell
+            className="lg:col-span-4 lg:min-h-[300px]"
+            title={c3.title}
+            body={c3.body}
+            icon={<BentoMarket className="text-foreground" />}
+          >
             <MarketBars />
           </BentoShell>
-          <BentoShell className="lg:col-span-4 lg:min-h-[300px]" title={c4.title} body={c4.body}>
+          <BentoShell
+            className="lg:col-span-4 lg:min-h-[300px]"
+            title={c4.title}
+            body={c4.body}
+            icon={<BentoAlert className="text-foreground" />}
+          >
             <AlertStack />
           </BentoShell>
-          <BentoShell className="lg:col-span-12 lg:min-h-[220px]" title={c5.title} body={c5.body}>
+          <BentoShell
+            className="md:col-span-2 lg:col-span-12 lg:min-h-[220px]"
+            title={c5.title}
+            body={c5.body}
+            icon={<BentoExport className="text-foreground" />}
+          >
             <ExportRow />
           </BentoShell>
         </div>
@@ -51,25 +90,32 @@ function BentoShell({
   title,
   body,
   className,
+  icon,
   children,
 }: {
   title: string;
   body: string;
   className?: string;
-  children: React.ReactNode;
+  icon: ReactNode;
+  children: ReactNode;
 }) {
   const { ref, className: marks } = useMarksInView<HTMLDivElement>();
   return (
-    <Wipe from="top">
+    <Wipe from="top" className={className}>
       <div
         ref={ref}
-        className={`relative flex flex-col border border-border bg-card p-5 ${marks} ${className ?? ""}`}
+        className={`relative flex h-full min-w-0 flex-col border border-border bg-card p-5 ${marks}`}
       >
         <span className="marks-bl" />
         <span className="marks-br" />
-        <h3 className="text-h3">{title}</h3>
-        <p className="mt-2 max-w-prose text-body-sm">{body}</p>
-        <div className="mt-5 flex-1">{children}</div>
+        <div className="flex items-start gap-3">
+          <span className="mt-0.5 shrink-0 border border-border bg-background p-1.5">{icon}</span>
+          <div className="min-w-0">
+            <h3 className="text-h3">{title}</h3>
+            <p className="mt-2 text-body-sm">{body}</p>
+          </div>
+        </div>
+        <div className="mt-5 min-w-0 flex-1">{children}</div>
       </div>
     </Wipe>
   );
@@ -191,8 +237,8 @@ function CompetitorTable() {
   }, []);
 
   return (
-    <div className="overflow-hidden border border-border font-mono text-[12px]">
-      <div className="grid grid-cols-[1fr_auto_auto] gap-2 border-b border-border bg-muted px-3 py-2 text-muted-foreground">
+    <div className="overflow-x-auto border border-border font-mono text-[12px]">
+      <div className="grid min-w-[220px] grid-cols-[1fr_auto_auto] gap-2 border-b border-border bg-muted px-3 py-2 text-muted-foreground">
         <span>Item</span>
         <span>Was</span>
         <span>Now</span>
@@ -205,7 +251,7 @@ function CompetitorTable() {
             key={row.name}
             className={`grid grid-cols-[1fr_auto_auto] gap-2 border-b border-border px-3 py-2 last:border-0 ${active ? "border-l-2 border-l-accent bg-accent/15" : ""}`}
           >
-            <span>{row.name}</span>
+            <span className="truncate">{row.name}</span>
             <span className={active ? "line-through opacity-50" : ""}>{row.price}</span>
             <span className="tabular-nums">{row.newPrice}</span>
           </div>
@@ -232,8 +278,8 @@ function MarketBars() {
     <div ref={ref} className="space-y-2">
       {marketData.map((row, i) => (
         <div key={row.label} className="flex items-center gap-2">
-          <span className="w-16 shrink-0 font-mono text-[11px] text-muted-foreground">{row.label}</span>
-          <div className="relative h-4 flex-1 bg-muted">
+          <span className="w-14 shrink-0 font-mono text-[11px] text-muted-foreground">{row.label}</span>
+          <div className="relative h-4 min-w-0 flex-1 bg-muted">
             <motion.div
               className="absolute inset-y-0 left-0 bg-chart-2"
               initial={{ scaleX: 0 }}
@@ -302,19 +348,19 @@ function ExportRow() {
   }, [visible]);
 
   return (
-    <div ref={ref} className="flex flex-col gap-4 sm:flex-row sm:items-stretch">
-      <div className="flex shrink-0 flex-wrap gap-2 sm:w-[280px]">
+    <div ref={ref} className="flex flex-col gap-4 lg:flex-row lg:items-stretch">
+      <div className="flex shrink-0 flex-wrap gap-2">
         {bento.exportTiles.map((t) => (
           <div
             key={t}
-            className="flex h-16 w-16 items-center justify-center border border-border bg-background font-mono text-[12px] transition-[background-color,color] duration-100 hover:bg-accent hover:text-accent-foreground"
+            className="flex h-14 w-14 items-center justify-center border border-border bg-background font-mono text-[12px] transition-[background-color,color] duration-100 hover:bg-accent hover:text-accent-foreground"
           >
             {t}
           </div>
         ))}
       </div>
-      <div className="flex min-h-[64px] flex-1 items-center border border-border-strong bg-background px-4 font-mono text-[13px]">
-        <code>
+      <div className="flex min-h-[56px] min-w-0 flex-1 items-center overflow-x-auto border border-border-strong bg-background px-4 font-mono text-[13px]">
+        <code className="whitespace-nowrap">
           {typed}
           <span className="block-cursor" />
         </code>
