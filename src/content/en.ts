@@ -4,7 +4,7 @@ export const site = {
   name: "pythie",
   tagline: "Ask the question. The web answers in numbers.",
   url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://pythie.eu",
-  contactEmail: "founder@pythie.eu",
+  contactEmail: "ghom@pythie.eu",
 };
 
 export const nav = {

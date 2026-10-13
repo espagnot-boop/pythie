@@ -2,7 +2,7 @@ import { site } from "@/content/en";
 
 export const legalMeta = {
   lastUpdated: "13 October 2026",
-  contactEmail: "founder@pythie.eu",
+  contactEmail: "ghom@pythie.eu",
   siteUrl: site.url,
   publisher: "Pythie",
   location: "Paris, France",
