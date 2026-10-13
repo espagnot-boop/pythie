@@ -4,7 +4,7 @@ export const site = {
   name: "pythie",
   tagline: "Ask the question. The web answers in numbers.",
   url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://pythie.eu",
-  contactEmail: "hello@pythie.example",
+  contactEmail: "founder@pythie.eu",
 };
 
 export const nav = {
@@ -365,6 +365,7 @@ export const footer = {
     { href: "/legal", label: "Legal notice" },
     { href: "/privacy", label: "Privacy" },
     { href: "/terms", label: "Terms" },
+    { href: "/cookies", label: "Cookies" },
     { href: "/privacy#gdpr", label: "GDPR compliance" },
   ],
   europeHosting:
