@@ -13,7 +13,8 @@ export default function AboutPage() {
   return (
     <>
       <article className="section-pad border-b border-border">
-        <div className="mx-auto max-w-[720px] px-5 lg:px-8">
+        <div className="mx-auto w-full max-w-[1120px] px-5 lg:px-8">
+          <div className="max-w-[720px]">
           <Link href="/" className="link-hover font-mono text-[13px] text-muted-foreground">
             ← pythie.eu
           </Link>
@@ -31,6 +32,7 @@ export default function AboutPage() {
           <p className="mt-16 border-t border-border pt-8 font-mono text-[13px] text-muted-foreground">
             <a href={`mailto:${about.email}`} className="link-hover text-foreground">{about.email}</a>
           </p>
+          </div>
         </div>
       </article>
       <Footer />

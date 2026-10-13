@@ -57,21 +57,23 @@ export function Footer() {
           </a>
         </div>
       </div>
-      <div className="space-y-2 px-6 pb-4 lg:px-12">
-        <p className="font-mono text-[12px] text-[oklch(0.708_0_0)]">{footer.europeHosting}</p>
-        <p className="font-mono text-[12px] text-muted-foreground">{footer.madeIn}</p>
-        <a
-          href={footer.xUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-flex items-center gap-2 font-mono text-[12px] text-muted-foreground transition-colors hover:text-foreground"
-        >
-          <XLogo className="size-3.5 shrink-0" />
-          <span className="link-hover">{footer.xHandle}</span>
-        </a>
+      <div className="grid-cols-12 pb-4">
+        <div className="col-span-12 space-y-2">
+          <p className="font-mono text-[12px] text-[oklch(0.708_0_0)]">{footer.europeHosting}</p>
+          <p className="font-mono text-[12px] text-muted-foreground">{footer.madeIn}</p>
+          <a
+            href={footer.xUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 font-mono text-[12px] text-muted-foreground transition-colors hover:text-foreground"
+          >
+            <XLogo className="size-3.5 shrink-0" />
+            <span className="link-hover">{footer.xHandle}</span>
+          </a>
+        </div>
       </div>
-      <div className="overflow-hidden px-6 lg:px-12">
-        <div className="flex">
+      <div className="grid-cols-12 overflow-hidden">
+        <div className="col-span-12 flex">
           {letters.map((letter, i) => (
             <motion.span
               key={i}

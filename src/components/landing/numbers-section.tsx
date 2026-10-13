@@ -17,7 +17,7 @@ export function NumbersSection() {
             return (
             <div
               key={item.label}
-              className={`border-border px-4 py-10 lg:px-6 ${i > 0 ? "lg:border-l" : ""} ${i % 2 === 1 ? "border-l" : ""}`}
+              className={`border-border py-10 ${i > 0 ? "lg:border-l lg:pl-6" : ""} ${i % 2 === 1 ? "border-l pl-4 lg:pl-6" : ""}`}
             >
               {StatIcon && (
                 <span className="mb-4 inline-flex h-8 w-8 items-center justify-center border border-border text-muted-foreground">

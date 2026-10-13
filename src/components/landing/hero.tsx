@@ -114,9 +114,11 @@ export function Hero() {
           <HeroDemo />
         </div>
       </div>
-      <p className="absolute bottom-6 left-6 z-10 font-mono text-[12px] text-muted-foreground">
-        {hero.localTimePrefix} {time}
-      </p>
+      <div className="grid-cols-12 relative z-10 pb-6">
+        <p className="col-span-12 font-mono text-[12px] text-muted-foreground">
+          {hero.localTimePrefix} {time}
+        </p>
+      </div>
     </section>
   );
 }
@@ -124,7 +126,7 @@ export function Hero() {
 function HeroGrid() {
   return (
     <div
-      className="pointer-events-none absolute inset-0 mx-auto max-w-[1280px] px-6 lg:px-12"
+      className="pointer-events-none absolute inset-0 mx-auto max-w-[1120px] px-5 lg:px-8"
       aria-hidden
     >
       <div className="grid h-full grid-cols-12 gap-6">
