@@ -17,6 +17,7 @@ import {
   BentoMarket,
   BentoShrink,
 } from "@/components/landing/bento-icons";
+import { LivePriceChart } from "@/components/landing/live-price-chart";
 
 const cards = bento.cards;
 const c0 = cards[0]!;
@@ -33,7 +34,7 @@ export function BentoSection() {
         <MaskLines text={bento.title} className="col-span-12 text-h2 lg:col-span-8" as="h2" />
         <div className="col-span-12 mt-10 grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-12">
           <BentoShell
-            className="md:col-span-2 lg:col-span-7 lg:min-h-[300px]"
+            className="md:col-span-2 lg:col-span-7 lg:min-h-[360px]"
             title={c0.title}
             body={c0.body}
             icon={<BentoLivePrice className="text-foreground" />}
@@ -118,62 +119,6 @@ function BentoShell({
         <div className="mt-5 min-w-0 flex-1">{children}</div>
       </div>
     </Wipe>
-  );
-}
-
-function LivePriceChart() {
-  const ref = useRef<SVGSVGElement>(null);
-  const visible = useInView(ref, { once: true, margin: inViewConfig.margin });
-  const points = [12, 18, 16, 22, 20, 28, 26, 32, 30, 36, 34, 40, 38, 44, 42, 48, 46, 52, 50, 56, 54, 58, 56, 60];
-  const w = 320;
-  const h = 100;
-  const pad = 4;
-  const coords = points.map((y, i) => {
-    const x = pad + (i / (points.length - 1)) * (w - pad * 2);
-    const yy = h - pad - (y / 60) * (h - pad * 2);
-    return `${x},${yy}`;
-  });
-  const polyline = coords.join(" ");
-  const last = coords[coords.length - 1]?.split(",") ?? ["0", "0"];
-
-  return (
-    <div className="relative border border-border bg-background p-3">
-      <span className="font-mono text-[11px] text-muted-foreground">{bento.exampleTag}</span>
-      <svg ref={ref} viewBox={`0 0 ${w} ${h}`} className="mt-2 h-[100px] w-full">
-        {[0, 1, 2, 3].map((i) => (
-          <line
-            key={i}
-            x1={pad}
-            y1={pad + (i * (h - pad * 2)) / 3}
-            x2={w - pad}
-            y2={pad + (i * (h - pad * 2)) / 3}
-            stroke="var(--border)"
-            strokeWidth={1}
-            strokeDasharray="2 4"
-          />
-        ))}
-        <motion.polyline
-          fill="none"
-          stroke="var(--chart-2)"
-          strokeWidth={2}
-          strokeLinecap="butt"
-          strokeLinejoin="miter"
-          points={polyline}
-          initial={{ opacity: 0 }}
-          animate={visible ? { opacity: 1 } : { opacity: 0 }}
-          transition={{ duration: dur.slow, ease: ease.out }}
-        />
-        {visible && (
-          <rect
-            x={Number(last[0]) - 4}
-            y={Number(last[1]) - 4}
-            width={8}
-            height={8}
-            fill="var(--chart-2)"
-          />
-        )}
-      </svg>
-    </div>
   );
 }
 

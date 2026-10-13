@@ -116,7 +116,8 @@ export const bento = {
   cards: [
     {
       title: "Live prices",
-      body: "Track a product, rent, or fare. Pythie polls at the cadence you choose and keeps history.",
+      body:
+        "Track a product, rent, or fare. Pythie polls on your schedule and stores every point — dips, spikes, and seasonality included.",
     },
     {
       title: "Shrinkflation",
@@ -153,6 +154,7 @@ export const bento = {
   ],
   exportTiles: ["csv", "xlsx", "sheets", "api"],
   exportCode: "GET /v1/questions/lyon-2bed",
+  livePriceFoot: "84 daily captures · 3 sources merged · last poll 2h ago",
 };
 
 export const numbers = {
