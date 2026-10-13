@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { footer, site } from "@/content/en";
+import { XLogo } from "@/components/icons";
 import { motion } from "motion/react";
 import { dur, ease, inView } from "@/lib/motion";
 
@@ -45,11 +46,29 @@ export function Footer() {
           <a href={`mailto:${site.contactEmail}`} className="mt-4 block link-hover font-mono text-[14px]">
             {site.contactEmail}
           </a>
+          <a
+            href={footer.xUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-4 inline-flex items-center gap-2 link-hover font-mono text-[14px]"
+          >
+            <XLogo className="size-4 shrink-0" />
+            {footer.xHandle}
+          </a>
         </div>
       </div>
       <div className="space-y-2 px-6 pb-4 lg:px-12">
         <p className="font-mono text-[12px] text-[oklch(0.708_0_0)]">{footer.europeHosting}</p>
         <p className="font-mono text-[12px] text-muted-foreground">{footer.madeIn}</p>
+        <a
+          href={footer.xUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-2 font-mono text-[12px] text-muted-foreground transition-colors hover:text-foreground"
+        >
+          <XLogo className="size-3.5 shrink-0" />
+          <span className="link-hover">{footer.xHandle}</span>
+        </a>
       </div>
       <div className="overflow-hidden px-6 lg:px-12">
         <div className="flex">

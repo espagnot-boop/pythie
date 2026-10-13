@@ -371,6 +371,8 @@ export const footer = {
   europeHosting:
     "Designed and hosted in Europe. Data protected under European standards.",
   madeIn: "pythie.eu · 2026",
+  xUrl: "https://x.com/Pythiedoteu",
+  xHandle: "@Pythiedoteu",
 };
 
 export const notFound = {
