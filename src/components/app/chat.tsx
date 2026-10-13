@@ -56,7 +56,7 @@ export function AppChat({ initialQuestion }: { initialQuestion: string }) {
   return (
     <div className="flex min-h-screen flex-col">
       <header className="flex items-center justify-between border-b border-border px-6 py-4">
-        <Logo />
+        <Logo size={28} showEu={false} />
         <Link href="/#attente" className="link-hover font-mono text-[14px]">
           {app.betaGate.navCta}
         </Link>

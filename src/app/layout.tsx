@@ -9,6 +9,10 @@ export const metadata: Metadata = {
   title: site.name,
   description: site.tagline,
   metadataBase: new URL(site.url),
+  icons: {
+    icon: [{ url: "/icon.svg", type: "image/svg+xml" }],
+    apple: [{ url: "/apple-icon.svg", type: "image/svg+xml" }],
+  },
 };
 
 export default function RootLayout({

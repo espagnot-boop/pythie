@@ -19,10 +19,10 @@ const links = [
 
 export function NavBar() {
   const { scrollY } = useScroll();
-  const heightMv = useTransform(scrollY, [0, 120], [60, 48]);
-  const logoSizeMv = useTransform(scrollY, [0, 120], [22, 18]);
-  const [height, setHeight] = useState(60);
-  const [logoSize, setLogoSize] = useState(22);
+  const heightMv = useTransform(scrollY, [0, 120], [68, 56]);
+  const logoSizeMv = useTransform(scrollY, [0, 120], [30, 26]);
+  const [height, setHeight] = useState(68);
+  const [logoSize, setLogoSize] = useState(30);
 
   useMotionValueEvent(heightMv, "change", setHeight);
   useMotionValueEvent(logoSizeMv, "change", setLogoSize);
