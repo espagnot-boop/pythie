@@ -3,7 +3,7 @@ export const PROSE_CASE = true;
 export const site = {
   name: "pythie",
   tagline: "Ask the question. The web answers in numbers.",
-  url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://pythie.example",
+  url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://pythie.eu",
   contactEmail: "hello@pythie.example",
 };
 
@@ -41,6 +41,7 @@ export const hero = {
     { id: "data", label: "Data jobs" },
   ],
   localTimePrefix: "Local time",
+  europeAnchor: "European intelligence · data sovereignty",
 };
 
 export const sourcesRail = {
@@ -220,8 +221,10 @@ export const trust = {
       body: "If a page is unreadable or the sample is too small, Pythie says so instead of guessing.",
     },
     {
-      title: "Public pages only",
-      body: "Pythie respects robots.txt, rate limits, and site terms. No personal data collection, no bypassing blocks.",
+      title: "European sovereignty",
+      body:
+        "Strict GDPR compliance. Pythie collects no personal data, respects site robots.txt, and runs on infrastructure aligned with European security requirements.",
+      icon: "europe",
     },
   ],
 };
@@ -360,8 +363,11 @@ export const footer = {
     { href: "/legal", label: "Legal notice" },
     { href: "/privacy", label: "Privacy" },
     { href: "/terms", label: "Terms" },
+    { href: "/privacy#gdpr", label: "GDPR compliance" },
   ],
-  madeIn: "Made in Paris. 2026.",
+  europeHosting:
+    "Designed and hosted in Europe. Data protected under European standards.",
+  madeIn: "pythie.eu · 2026",
 };
 
 export const notFound = {

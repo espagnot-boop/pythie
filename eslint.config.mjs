@@ -1,3 +1,5 @@
 import nextPlugin from "eslint-config-next";
 
-export default [...nextPlugin];
+const eslintConfig = [...nextPlugin];
+
+export default eslintConfig;

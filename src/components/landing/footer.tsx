@@ -47,7 +47,10 @@ export function Footer() {
           </a>
         </div>
       </div>
-      <p className="px-6 font-mono text-[12px] text-muted-foreground lg:px-12">{footer.madeIn}</p>
+      <div className="space-y-2 px-6 pb-4 lg:px-12">
+        <p className="font-mono text-[12px] text-[oklch(0.708_0_0)]">{footer.europeHosting}</p>
+        <p className="font-mono text-[12px] text-muted-foreground">{footer.madeIn}</p>
+      </div>
       <div className="overflow-hidden px-6 lg:px-12">
         <div className="flex">
           {letters.map((letter, i) => (

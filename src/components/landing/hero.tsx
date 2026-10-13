@@ -56,10 +56,22 @@ export function Hero() {
       <HeroGrid />
       <div className="grid-cols-12 relative z-10">
         <div className="col-span-12 lg:col-span-9">
-          <Badge variant="accent" className="mb-5">
-            {badgeText}
-            <span className="block-cursor ml-0.5" />
-          </Badge>
+          <div className="mb-5 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
+            <Badge variant="accent">
+              {badgeText}
+              <span className="block-cursor ml-0.5" />
+            </Badge>
+            <p
+              className="inline-flex w-fit items-center gap-2 border border-[oklch(1_0_0/10%)] px-2.5 py-1 font-mono text-[12px] tabular-nums text-[oklch(0.708_0_0)]"
+            >
+              <span
+                className="size-1.5 shrink-0 bg-accent"
+                title="EU-aligned"
+                aria-hidden
+              />
+              {hero.europeAnchor}
+            </p>
+          </div>
           <MaskLines
             text={`${titleLines[0]}\n${titleLines[1]}`}
             className="text-display"
